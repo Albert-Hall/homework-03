@@ -14,11 +14,7 @@ const Users = () => {
   console.log(getBageClass());
 
   const handleDelete = (userId) => {
-    users.map((user, index, arr) => {
-      if (user._id === userId) {
-        setUsers(arr.splice(index, 1));
-      }
-    });
+    setUsers(users.filter((item) => item._id != userId));
   };
 
   const renderPhrase = () => {
@@ -33,7 +29,7 @@ const Users = () => {
 
   return (
     <>
-      <span className="primary" /*{getBageClass()}*/>{renderPhrase()}</span>
+      <span className={getBageClass()}>{renderPhrase()}</span>
 
       <table className="table">
         <thead>
@@ -66,7 +62,7 @@ const Users = () => {
               <td>
                 <button
                   className="btn btn-danger btn-bg"
-                  onClick={handleDelete(item._id)}
+                  onClick={() => handleDelete(item._id)}
                 >
                   Delete
                 </button>
